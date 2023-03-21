@@ -3,6 +3,7 @@ package com.KoreaIT.example.JAM;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,13 +32,11 @@ public class Main {
 				String title = sc.nextLine();
 				System.out.printf("내용 : ");
 				String body = sc.nextLine();
-				
 
 				Article article = new Article(id, title, body);
 				articles.add(article);
 
 				System.out.println(id + "번 글이 생성되었습니다");
-				
 
 				Connection conn = null;
 				PreparedStatement pstmt = null;
@@ -52,7 +51,7 @@ public class Main {
 					String sql = "INSERT INTO article";
 					sql += " SET regDate = NOW(),";
 					sql += " updateDate = NOW(),";
-					sql += "title = '" + title +"',";
+					sql += "title = '" + title + "',";
 					sql += "`body` = '" + body + "';";
 
 					System.out.println(sql);
@@ -95,7 +94,8 @@ public class Main {
 				System.out.println("번호   /   제목");
 
 				for (Article article : articles) {
-					System.out.printf("%d   /   %s\n",article.id, article.title);
+					System.out.printf("%d   /   %s\n", article.id, article.title);
+
 				}
 			}
 
