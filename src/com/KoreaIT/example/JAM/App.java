@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import com.KoreaIT.example.JAM.container.Container;
 import com.KoreaIT.example.JAM.controller.ArticleController;
 import com.KoreaIT.example.JAM.controller.MemberController;
 
@@ -35,7 +34,7 @@ public class App {
 				conn = DriverManager.getConnection(url, "root", "");
 
 				Container.conn = conn;
-				
+
 				int actionResult = action(cmd);
 
 				if (actionResult == -1) {
@@ -68,6 +67,8 @@ public class App {
 
 		if (cmd.equals("member login")) {
 			memberController.login(cmd);
+		} else if (cmd.equals("member profile")) {
+			memberController.showProfile(cmd);
 		} else if (cmd.equals("member join")) {
 			memberController.doJoin(cmd);
 		} else if (cmd.equals("article write")) {
