@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import com.KoreaIT.example.JAM.container.Container;
 import com.KoreaIT.example.JAM.controller.ArticleController;
 import com.KoreaIT.example.JAM.controller.MemberController;
 
@@ -64,8 +65,10 @@ public class App {
 
 		MemberController memberController = Container.memberController;
 		ArticleController articleController = Container.articleController;
-
-		if (cmd.equals("member login")) {
+		
+		if (cmd.equals("member logout")) {
+			memberController.logout(cmd);
+		} else if (cmd.equals("member login")) {
 			memberController.login(cmd);
 		} else if (cmd.equals("member profile")) {
 			memberController.showProfile(cmd);
