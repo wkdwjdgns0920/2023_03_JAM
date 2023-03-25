@@ -10,8 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class App {
-
-	public void start() { 
+	public void start() {
 		System.out.println("=프로그램 시작==");
 		Scanner sc = new Scanner(System.in);
 
