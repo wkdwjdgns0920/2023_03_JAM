@@ -5,6 +5,7 @@ import java.util.List;
 import com.KoreaIT.example.JAM.container.Container;
 import com.KoreaIT.example.JAM.dto.Article;
 import com.KoreaIT.example.JAM.service.ArticleService;
+import com.KoreaIT.example.JAM.util.util;
 
 public class ArticleController extends Controller {
 
@@ -121,7 +122,24 @@ public class ArticleController extends Controller {
 	public void showList(String cmd) {
 		System.out.println("==게시물 목록==");
 
-		List<Article> articles = articleService.getArticlesCount();
+		String[] cmdBits = cmd.split(" ");
+
+		int page = 1;
+		String searchKeyword = null;
+
+		// 몇페이지?
+		if (cmdBits.length >= 3) {
+			page = Integer.parseInt(cmdBits[2]);
+		}
+		// 검색어
+		if (cmdBits.length >= 4) {
+			searchKeyword = cmdBits[3];
+		}
+
+		// 한페이지에 5개씩
+		int itemsInAPage = 5;
+
+		List<Article> articles = articleService.getForPrintArticles(page, itemsInAPage, searchKeyword);
 
 		if (articles.size() == 0) {
 			System.out.println("게시글이 없습니다");
